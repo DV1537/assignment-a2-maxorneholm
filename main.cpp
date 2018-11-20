@@ -4,6 +4,7 @@
 #include "Shape.cpp"
 #include "Triangle.cpp"
 #include "Point.cpp"
+#include "Line.cpp"
 
 
 int main(){
@@ -58,22 +59,25 @@ int main(){
     std::cout << "\n\n";
 
     if(*coordCounter/2 == 1){
-        Point b;
-        b.getType();
-        b.getArea(xCoords, yCoords);
-        b.position(xCoords, yCoords);
+        Point point;
+        point.getType();
+        point.getArea(xCoords, yCoords);
+        point.position(xCoords, yCoords);
     }
 
     if(*coordCounter/2 == 3 && xCoords[0] > xCoords[1] || xCoords[1] > xCoords[0] || xCoords[0] > xCoords[2] || xCoords[2] > xCoords[0]){
-        Triangle a;
-        a.getType();
-        a.getArea(xCoords, yCoords);
-        a.circumference();
-        a.position(xCoords, yCoords);
+        Triangle triangle;
+        triangle.getType();
+        triangle.getArea(xCoords, yCoords);
+        triangle.circumference();
+        triangle.position(xCoords, yCoords);
     }
     
     if(*coordCounter/2 == 3 && xCoords[0] == xCoords[1] == xCoords[2]){
-        std::cout << "Line";
+        Line line;
+        line.getType();
+        line.getArea(xCoords, yCoords);
+
     }
 
 
