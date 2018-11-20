@@ -3,7 +3,7 @@
 
 void Line::getType(){
     type = "Line";
-    std::cout << "Type: " << type << std::endl;
+    std::cout << "\nType: " << type << std::endl;
 }
 void Line::position(float* xCoords, float* yCoords){
     std::cout << "\nCenter coordinates: " << "(" << xCoords[0] << ", " << yCoords[0] << ")" << std::endl;
