@@ -13,6 +13,7 @@ public:
     void getArea(float*, float*);
     void circumference();
     void position(float*, float*);
+    virtual ~Triangle() = default;
 };
 
 #endif

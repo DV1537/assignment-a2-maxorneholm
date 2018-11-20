@@ -3,6 +3,8 @@
 #include <string>
 #include "Shape.cpp"
 #include "Triangle.cpp"
+#include "Point.cpp"
+
 
 int main(){
     std::cout.setf(std::ios::fixed,std::ios::floatfield);
@@ -56,16 +58,22 @@ int main(){
     std::cout << "\n\n";
 
     if(*coordCounter/2 == 1){
-        //Point b;
-        //a.getType();
+        Point b;
+        b.getType();
+        b.getArea(xCoords, yCoords);
+        b.position(xCoords, yCoords);
     }
 
-    if(*coordCounter/2 == 3){
+    if(*coordCounter/2 == 3 && xCoords[0] > xCoords[1] || xCoords[1] > xCoords[0] || xCoords[0] > xCoords[2] || xCoords[2] > xCoords[0]){
         Triangle a;
         a.getType();
         a.getArea(xCoords, yCoords);
         a.circumference();
         a.position(xCoords, yCoords);
+    }
+    
+    if(*coordCounter/2 == 3 && xCoords[0] == xCoords[1] == xCoords[2]){
+        std::cout << "Line";
     }
 
 

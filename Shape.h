@@ -13,6 +13,7 @@ public:
     virtual void getArea(float*, float*) = 0;
     virtual void circumference() = 0;
     virtual void position(float*, float*) = 0;
+    virtual ~Shape() = default;
 };
 
 #endif
