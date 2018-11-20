@@ -9,6 +9,8 @@ protected:
 public:
     void getType();
     void getArea(float*, float*);
+    void circumference();
+    void position(float*, float*);
     virtual ~Line() = default;
 };
 
