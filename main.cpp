@@ -5,6 +5,7 @@
 #include "Triangle.cpp"
 #include "Point.cpp"
 #include "Line.cpp"
+#include "Polygon.cpp"
 
 
 int main(){
@@ -60,8 +61,8 @@ int main(){
 
     std::cout << "\n\n";
 
+    // Calculate incline
    for(int i = 0; i < (*coordCounter/2)-1; i++){
-
         float yV = (yCoords[i+1] - yCoords[i]);
         float xV = (xCoords[i+1] - xCoords[i]);
         float kV = (yV/xV);
@@ -73,28 +74,11 @@ int main(){
 
     for(int i=0; i < (*coordCounter/2)-1; i++){
         if(kValue[0] == kValue[i]){
-            isLine = true;
+            isLine = true; //If all inclines between points match up, it's a line.
         }else{
             isLine = false;
-            isPolygon = true;
+            isPolygon = true; //else it's a polygon.
         }
-    }
-
-    if(isLine == true){
-        Line line;
-        line.getType();
-        line.getArea(xCoords, yCoords);
-    }
-
-    if(isPolygon == true && *coordCounter/2 == 3){
-        Triangle triangle;
-        triangle.getType();
-        triangle.getArea(xCoords, yCoords);
-        triangle.circumference();
-        triangle.position(xCoords, yCoords);
-    }
-    if(isPolygon == true && *coordCounter/2 > 3){
-        std::cout << "\nPoly\n";
     }
 
     if(*coordCounter/2 == 1){
@@ -103,31 +87,27 @@ int main(){
         point.getArea(xCoords, yCoords);
         point.position(xCoords, yCoords);
     }
-    /*if(*coordCounter/2 == 3){
+
+    //create new line object.
+    if(isLine == true){
+        Line line;
+        line.getType();
+        line.getArea(xCoords, yCoords);
+    }
+    //create new triangle object.
+    if(isPolygon == true && *coordCounter/2 == 3){
         Triangle triangle;
         triangle.getType();
         triangle.getArea(xCoords, yCoords);
         triangle.circumference();
         triangle.position(xCoords, yCoords);
     }
-
-/*
-   // Point
-
-    // Triangle
-    if(*coordCounter/2 == 3 && xCoords[0] > xCoords[1] || xCoords[1] > xCoords[0] || xCoords[0] > xCoords[2] || xCoords[2] > xCoords[0]){
-        Triangle triangle;
-        triangle.getType();
-        triangle.getArea(xCoords, yCoords);
-        triangle.circumference();
-        triangle.position(xCoords, yCoords);
+    //create new polygon object.
+    if(isPolygon == true && *coordCounter/2 > 3){
+        Polygon polygon;
+        polygon.getType();
     }
-    
-    // Line
-    if(*coordCounter/2 > 3){
-        std::cout << "Polygon.";
-    }
-*/
+
     delete[] coords;
     delete[] xCoords;
     delete[] yCoords;
