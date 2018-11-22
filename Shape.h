@@ -6,7 +6,7 @@ class Shape{
 protected:
     float area;
     std::string type;
-
+    
 public:
     virtual void getType() = 0;
     virtual void getArea(float*, float*) = 0;

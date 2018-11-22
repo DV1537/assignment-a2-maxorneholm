@@ -28,23 +28,27 @@ void Triangle::getArea(float* xCoords, float* yCoords){
 */
 
     if(distanceAtoB > distanceAtoC && distanceAtoB > distanceBtoC){
-    hypo = distanceAtoB;
-    base = distanceAtoC;
-    height = distanceBtoC;
+        hypo = distanceAtoB;
+        base = distanceAtoC;
+        height = distanceBtoC;
     }
     if(distanceAtoC > distanceAtoB && distanceAtoC > distanceBtoC){
-    hypo = distanceAtoC;
-    base = distanceAtoB;
-    height = distanceBtoC;
+        hypo = distanceAtoC;
+        base = distanceAtoB;
+        height = distanceBtoC;
     }
     if(distanceBtoC > distanceAtoB && distanceBtoC > distanceAtoC){
-    hypo = distanceBtoC;
-    base = distanceAtoB;
-    height = distanceAtoC;
+        hypo = distanceBtoC;
+        base = distanceAtoB;
+        height = distanceAtoC;
     }
 
-    area = (base*height)/2.0f;
+    circumFormula = (distanceAtoB + distanceAtoC + distanceBtoC)/2;
+    area = sqrt(circumFormula*(circumFormula-distanceAtoB)*(circumFormula-distanceBtoC)*(circumFormula-distanceAtoC));
+
+   // area = (base*height)/2.0f;
     std::cout << '\n' << "Area: " << area << " l.e";
+    std::cout << '\n' << distanceAtoB << " " << distanceAtoC << " " << distanceBtoC;
 }
 
 void Triangle::circumference(){

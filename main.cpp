@@ -29,7 +29,7 @@ int main(){
     float *coords = new float[*coordCounter];
     float *xCoords = new float[*coordCounter/2];
     float *yCoords = new float[*coordCounter/2];
-    float *kValue = new float[(*coordCounter/2)-1]; 
+    float *kValue = new float[*coordCounter/2]; 
 
 
     file.close();
@@ -60,26 +60,41 @@ int main(){
     }
 
     std::cout << "\n\n";
-
+    float kV = 0;
+    float deltaY = 0;
+    float deltaX = 0;
+    int kCalc = 0;
     // Calculate incline
    for(int i = 0; i < (*coordCounter/2)-1; i++){
-        float yV = (yCoords[i+1] - yCoords[i]);
-        float xV = (xCoords[i+1] - xCoords[i]);
-        float kV = (yV/xV);
+        deltaY = (yCoords[i+1] - yCoords[i]);
+        deltaX = (xCoords[i+1] - xCoords[i]);
+        kV = (deltaY/deltaX);
         kValue[i] = kV;
+        kCalc++;
+       // std::cout << kValue[i] << " ";
     }
+    std::cout << kCalc;
 
     bool isLine = false;
     bool isPolygon = false;
 
-    for(int i=0; i < (*coordCounter/2)-1; i++){
-        if(kValue[0] == kValue[i]){
-            isLine = true; //If all inclines between points match up, it's a line.
-        }else{
-            isLine = false;
-            isPolygon = true; //else it's a polygon.
+    std::cout << '\n';
+
+        // line
+        if(kCalc == 1){
+            isLine = true;
         }
-    }
+
+        // line
+        if(kCalc > 1){
+            for(int i=0; i < kCalc; i++){
+                if(kValue[1+i] == kValue[i] && kValue[0] == kCalc){
+                    isLine = true;
+                }else{
+                    isPolygon = true;
+                }
+            }
+        }
 
     if(*coordCounter/2 == 1){
         Point point; 
@@ -95,7 +110,7 @@ int main(){
         line.getArea(xCoords, yCoords);
     }
     //create new triangle object.
-    if(isPolygon == true && *coordCounter/2 == 3){
+    if(isPolygon == true && *coordCounter/2 == 3 && isLine == false){
         Triangle triangle;
         triangle.getType();
         triangle.getArea(xCoords, yCoords);
@@ -103,9 +118,10 @@ int main(){
         triangle.position(xCoords, yCoords);
     }
     //create new polygon object.
-    if(isPolygon == true && *coordCounter/2 > 3){
+    if(isPolygon == true && *coordCounter/2 > 3 && isLine == false){
         Polygon polygon;
         polygon.getType();
+        polygon.getArea(xCoords, yCoords, coordCounter);
     }
 
     delete[] coords;

@@ -3,12 +3,13 @@
 #include "Shape.h"
 
 class Polygon : public Shape{
-protected:
+private:
 
 public:
     void getType();
-    void getArea(float*, float*);
     void circumference();
+    void getArea(float*, float*, int*);
+    void getArea(float*, float*);
     void position(float*, float*);
     virtual ~Polygon() = default;
 };
