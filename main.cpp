@@ -59,7 +59,7 @@ int main(){
         std::cout << " (" << xCoords[i] << "," << yCoords[i] << ") ";
     }
 
-    std::cout << "\n\n";
+    std::cout << "\n";
     float kV = 0;
     float deltaY = 0;
     float deltaX = 0;
@@ -73,12 +73,9 @@ int main(){
         kCalc++;
        // std::cout << kValue[i] << " ";
     }
-    std::cout << kCalc;
-
+    
     bool isLine = false;
     bool isPolygon = false;
-
-    std::cout << '\n';
 
         // line
         if(kCalc == 1){
@@ -122,6 +119,7 @@ int main(){
         Polygon polygon;
         polygon.getType();
         polygon.getArea(xCoords, yCoords, coordCounter);
+        polygon.position(xCoords, yCoords, coordCounter);
     }
 
     delete[] coords;
