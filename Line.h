@@ -13,5 +13,4 @@ public:
     virtual ~Line() = default;
 };
 
-
 #endif
