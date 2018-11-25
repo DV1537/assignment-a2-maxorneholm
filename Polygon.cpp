@@ -67,16 +67,15 @@ float Polygon::circumference(){
 void Polygon::position(){
     float x = 0, y = 0;
     float sumX = 0, sumY = 0;
-    for (int i = 0; i < (coordCounter/2); i++){
+    for(int i = 0; i < (coordCounter/2); i++){
 			x += xCoords[i];
 			y += yCoords[i];
-		}
-		x /= (coordCounter/2);
-		y /= (coordCounter/2);
-		sumX = x;
-        sumY = y;
-
-        std::cout << "\nPosition: (" << sumX << ", " << sumY << ")" << std::endl; 
+	}
+	x /= (coordCounter/2);
+	y /= (coordCounter/2);
+	sumX = x;
+    sumY = y;
+    std::cout << "\nPosition: (" << sumX << ", " << sumY << ")" << std::endl; 
 }
 
 bool Polygon::isConvex(){return 0;}
