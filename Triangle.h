@@ -3,18 +3,22 @@
 #include "Shape.h"
 
 class Triangle : public Shape{
-protected:
-    float circum = 0, circumFormula = 0;
+private:
+    std::string type = "Triangle";
+    float area = 0;
+    float circum;
+    float* xCoords;
+    float* yCoords;
     float distanceAtoB = 0, distanceAtoC = 0, distanceBtoC = 0;
-    float distance = 0;
-    float hypo = 0, base = 0, height = 0, sumX = 0, sumY = 0;
-    float xAtoB, yAtoB, xAtoC, yAtoC, xBtoC, yBtoc = 0;
-public:
-    void getType();
-    void getArea(float*, float*);
-    void circumference();
-    void position(float*, float*);
-    virtual ~Triangle() = default;
-};
+    float hypo = 0, base = 0, height = 0, circumFormula = 0;
 
+public:
+    Triangle();
+    Triangle(float*, int);
+    std::string getType();
+    float getArea();
+    float circumference();
+    void position();
+    bool isConvex();
+};
 #endif

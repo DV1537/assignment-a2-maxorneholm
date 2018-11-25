@@ -1,18 +1,38 @@
 #include "Point.h"
 #include <iostream>
 
-void Point::getType(){
-    type = "Point";
-    std::cout << "Type: " << type << std::endl;
+Point::Point(){
+//def
 }
 
-void Point::position(float* xCoords, float* yCoords){
-    std::cout << "\nCenter coordinates: " << "(" << xCoords[0] << ", " << yCoords[0] << ")" << std::endl;
+Point::Point(float* coords, int coordCounter){
+        this->xCoords = new float[coordCounter/2];
+        this->yCoords = new float[coordCounter/2];
+
+        int yK = 1;
+        int xK = 0;
+
+        for(int i=0; i < coordCounter/2; i++){
+            this->xCoords[i] = coords[xK];
+            this->yCoords[i] = coords[yK];
+            yK += 2;
+            xK += 2;
+        }
 }
 
-void Point::getArea(float* xCoords, float* yCoords){
-    area = -1;
-    std::cout << "Area: " << area << " l.e";
+std::string Point::getType(){
+    return type;
 }
 
-void Point::circumference(){}
+float Point::getArea(){
+    return area;
+}
+float Point::circumference(){
+    return 0;
+}
+void Point::position(){
+    std::cout << "\nPosition: (" << xCoords[0] << ", " << yCoords[0] << ")";
+}
+bool Point::isConvex(){
+    return 0;
+}

@@ -1,16 +1,22 @@
 #ifndef POINT_H
 #define POINT_H
+
 #include "Shape.h"
-
 class Point : public Shape{
-protected:
-
+private:
+    std::string type = "Point";
+    float area = -1;
+    float circum;
+    float* xCoords;
+    float* yCoords;
 public:
-    void getType();
-    void getArea(float*, float*);
-    void circumference();
-    void position(float*, float*);
-    virtual ~Point() = default;
+    Point();
+    Point(float*, int);
+    std::string getType();
+    float getArea();
+    float circumference();
+    void position();
+    bool isConvex();
 };
 
 #endif

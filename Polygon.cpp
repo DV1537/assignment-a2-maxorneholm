@@ -1,89 +1,82 @@
 #include "Polygon.h"
 #include <iostream>
-#include <cmath>
-#include <string>
 
-void Polygon::getType(){
-    type = "Polygon";
-    std::cout << "\nType: " << type << std::endl;
+Polygon::Polygon(){}
+
+Polygon::Polygon(float* coords, int coordCounter){
+        this->xCoords = new float[coordCounter/2];
+        this->yCoords = new float[coordCounter/2];
+        this->coordCounter = coordCounter;
+        int yK = 1;
+        int xK = 0;
+
+        for(int i=0; i < coordCounter/2; i++){
+            this->xCoords[i] = coords[xK];
+            this->yCoords[i] = coords[yK];
+            yK += 2;
+            xK += 2;
+        }
 }
 
-void Polygon::getArea(float* xCoords, float* yCoords, int* coordCounter){
+std::string Polygon::getType(){
+    return type;
+}
 
+float Polygon::getArea(){
+    
     float current = 0;
     float last = 0;
-    float total = 0;
     int lastCounter = 0;
-    
-    float *areaArray = new float[*coordCounter/2];
 
-    for(int i = 0; i < (*coordCounter/2)-1; i++){
+    //Get all except last.
+    for(int i = 0; i < (coordCounter/2)-1; i++){
         current = ((xCoords[i] * yCoords[i+1]) - (yCoords[i] * xCoords[i+1]));
-        areaArray[i] = current;
+        area += current;
         lastCounter++;
     }
-    
+    //Get the last -> first.
     last = ((xCoords[lastCounter] * yCoords[0]) - (yCoords[lastCounter] * xCoords[0]));
-    areaArray[(*coordCounter/2)-1] = last;
+    area += last;
 
-    for (int i=0;i< (*coordCounter/2);i++)
-    {
-            total += (areaArray[i]);
-    }
-    total = abs(total);
-    total = total/2;
+    area = abs(area);
+    area = area/2;
 
-    std::cout << "area: " << total << ".";
+    return area;
 }
 
-void Polygon::getArea(float*, float*){}
-void Polygon::circumference(){}
+float Polygon::circumference(){
+    //Get the sides lengths.
+    int lastCounter = 0;
+    int total = 0;
+    float x = 0, y = 0;
 
-void Polygon::position(float* xCoords, float* yCoords, int* coordCounter){
-    int i=0;
-
-    for (i=0; i < (*coordCounter/2)-1; ++i)
-    {
-        xCoord0 = xCoords[i];
-        yCoord0 = yCoords[i];
-        xCoord1 = xCoords[i+1];
-        yCoord1 = yCoords[i+1];
-        a = xCoord0*yCoord1 - xCoord1*yCoord0;
-        currentArea += a;
-        centroidX += (xCoord0 + xCoord1)*a;
-        centroidY += (yCoord0 + yCoord1)*a;
+    for(int i = 0; i < (coordCounter/2)-1; i++){
+        x = pow(xCoords[i+1]-xCoords[i],2);
+        y = pow(yCoords[i+1]-yCoords[i],2);
+        total += sqrt(x+y);
+        lastCounter++;
     }
 
-    xCoord0 = xCoords[i];
-    yCoord0 = yCoords[i];
-    xCoord1 = xCoords[0];
-    yCoord1 = yCoords[0];
-    a = xCoord0*yCoord1 - xCoord1*yCoord0;
-    currentArea += a;
-    centroidX += (xCoord0 + xCoord1)*a;
-    centroidY += (yCoord0 + yCoord1)*a;
+    //Get the last sides length.
+    float lastX = pow(xCoords[lastCounter]-xCoords[0],2);
+    float lastY = pow(yCoords[lastCounter]-yCoords[0],2);
+    total += sqrt(lastX+lastY);
 
-    currentArea *= 0.5;
-    centroidX /= (6.0*currentArea);
-    centroidY /= (6.0*currentArea);
-
-    std::cout << "\n" << "Position: (" << centroidX << ", " << centroidY << ")\n";
-   
-   
-   
-   
-   /* float cX = 0;
-    float cY = 0;
-    for(int i = 0; i < (*coordCounter/2)-1; i++){
-	//ta fram x cord
-	cX += (xCoords[i] + xCoords[i+1]) * (xCoords[i] * yCoords[i+1] - xCoords[i+1] + yCoords[i]);
-	//ta fram y cord
-	cY += (yCoords[i] + yCoords[i+1]) * (xCoords[i] * yCoords[i+1] - xCoords[i+1] + yCoords[i]);
-
-    cX += (x0 + x1)*a;
-    cY += (y0 + y1)*a;
-    std::cout << "\nCenter coordinates: " << "(" << (0.01515151515*cX) << ", " << (0.01515151515*cY) << ")"; 
-    }
-*/
+    return total;
 }
-void Polygon::position(float* xCoords, float* yCoords){}
+
+void Polygon::position(){
+    float x = 0, y = 0;
+    float sumX = 0, sumY = 0;
+    for (int i = 0; i < (coordCounter/2); i++){
+			x += xCoords[i];
+			y += yCoords[i];
+		}
+		x /= (coordCounter/2);
+		y /= (coordCounter/2);
+		sumX = x;
+        sumY = y;
+
+    std::cout << "Position: (" << sumX << ", " << sumY << ")\n";
+}
+bool Polygon::isConvex(){return 0;}

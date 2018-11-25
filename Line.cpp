@@ -1,17 +1,44 @@
 #include "Line.h"
-#include <iostream>
 
-void Line::getType(){
-    type = "Line";
-    std::cout << "\nType: " << type << std::endl;
-}
-void Line::position(float* xCoords, float* yCoords){
-    std::cout << "\nCenter coordinates: " << "(" << xCoords[0] << ", " << yCoords[0] << ")" << std::endl;
+Line::Line(){
+//def
 }
 
-void Line::getArea(float* xCoords, float* yCoords){
-    area = -1;
-    std::cout << "Area: " << area << " l.e";
+Line::Line(float* coords, int coordCounter){
+        this->xCoords = new float[coordCounter/2];
+        this->yCoords = new float[coordCounter/2];
+        this->coordCounter = coordCounter;
+        int yK = 1;
+        int xK = 0;
+
+        for(int i=0; i < coordCounter/2; i++){
+            this->xCoords[i] = coords[xK];
+            this->yCoords[i] = coords[yK];
+            yK += 2;
+            xK += 2;
+        }
 }
 
-void Line::circumference(){}
+std::string Line::getType(){
+    return type;
+}
+
+float Line::getArea(){
+    return area;
+}
+
+float Line::circumference(){
+    return circum;
+}
+
+void Line::position(){
+    float xSum = 0 , ySum = 0;
+    for (int i=0; i < coordCounter/2 ;i++){
+        xSum += xCoords[i];
+        ySum += yCoords[i];
+    }
+    xSum /= coordCounter/2;
+    ySum /= coordCounter/2;
+    std::cout << "Center coordinates: " << xSum << ","  <<  ySum  <<  ".";
+}
+bool Line::isConvex(){return 0;}

@@ -4,17 +4,20 @@
 
 class Polygon : public Shape{
 private:
-//floats 
-float currentArea = 0, centroidX = 0, centroidY = 0;
-float xCoord0 = 0, yCoord0 = 0, xCoord1 = 0, yCoord1 = 0, a = 0;
-public:
-    void getType();
-    void circumference();
-    void getArea(float*, float*, int*);
-    void position(float*, float*, int*);
-    void getArea(float*, float*);
-    void position(float*, float*);
-    virtual ~Polygon() = default;
-};
+    std::string type = "Polygon";
+    float area = 0;
+    float circum;
+    int coordCounter;
+    float* xCoords;
+    float* yCoords;
 
+public:
+    Polygon();
+    Polygon(float*, int);
+    std::string getType();
+    float getArea();
+    float circumference();
+    void position();
+    bool isConvex();
+};
 #endif
