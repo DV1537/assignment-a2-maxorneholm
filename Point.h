@@ -17,6 +17,7 @@ public:
     float circumference();
     void position();
     bool isConvex();
+    ~Point();
 };
 
 #endif

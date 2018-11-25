@@ -24,11 +24,6 @@ std::string Triangle::getType(){
 
 float Triangle::getArea(){
 
-   /* float hypo = 0;
-    float base = 0;
-    float height = 0;
-    float circumFormula = 0;
-*/
     // Get the length A -> B
     float xAtoB = pow(xCoords[1]-xCoords[0],2);
     float yAtoB = pow(yCoords[1]-yCoords[0],2);
@@ -76,6 +71,15 @@ void Triangle::position(){
     sumX /= 3;
     sumY /= 3;
 
-    std::cout << "Center coordinates: " << "(" << sumX << ", " << sumY << ")" << std::endl;
+    std::cout << "\nPosition: " << "(" << sumX << ", " << sumY << ")" << std::endl;
 }
-bool Triangle::isConvex(){return 0;}
+bool Triangle::isConvex(){
+    return true;
+}
+
+Triangle::~Triangle(){
+    delete[] xCoords;
+    delete[] yCoords;
+    xCoords = NULL;
+    yCoords = NULL;
+}

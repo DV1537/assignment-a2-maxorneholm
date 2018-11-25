@@ -19,5 +19,6 @@ public:
     float circumference();
     void position();
     bool isConvex();
+    ~Polygon();    
 };
 #endif

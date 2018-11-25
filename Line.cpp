@@ -1,8 +1,6 @@
 #include "Line.h"
 
-Line::Line(){
-//def
-}
+Line::Line(){}
 
 Line::Line(float* coords, int coordCounter){
         this->xCoords = new float[coordCounter/2];
@@ -32,13 +30,21 @@ float Line::circumference(){
 }
 
 void Line::position(){
-    float xSum = 0 , ySum = 0;
+    float sumX = 0 , sumY = 0;
     for (int i=0; i < coordCounter/2 ;i++){
-        xSum += xCoords[i];
-        ySum += yCoords[i];
+        sumX += xCoords[i];
+        sumY += yCoords[i];
     }
-    xSum /= coordCounter/2;
-    ySum /= coordCounter/2;
-    std::cout << "Center coordinates: " << xSum << ","  <<  ySum  <<  ".";
+    sumX /= coordCounter/2;
+    sumY /= coordCounter/2;
+    std::cout << "\nPosition: " << "(" << sumX << ", "  <<  sumY  <<  ")" << std::endl;
 }
-bool Line::isConvex(){return 0;}
+bool Line::isConvex(){
+    return 1;
+}
+Line::~Line(){
+    delete[] xCoords;
+    delete[] yCoords;
+    xCoords = NULL;
+    yCoords = NULL;
+}

@@ -7,9 +7,9 @@ Polygon::Polygon(float* coords, int coordCounter){
         this->xCoords = new float[coordCounter/2];
         this->yCoords = new float[coordCounter/2];
         this->coordCounter = coordCounter;
+        
         int yK = 1;
         int xK = 0;
-
         for(int i=0; i < coordCounter/2; i++){
             this->xCoords[i] = coords[xK];
             this->yCoords[i] = coords[yK];
@@ -37,7 +37,6 @@ float Polygon::getArea(){
     //Get the last -> first.
     last = ((xCoords[lastCounter] * yCoords[0]) - (yCoords[lastCounter] * xCoords[0]));
     area += last;
-
     area = abs(area);
     area = area/2;
 
@@ -77,6 +76,14 @@ void Polygon::position(){
 		sumX = x;
         sumY = y;
 
-    std::cout << "Position: (" << sumX << ", " << sumY << ")\n";
+        std::cout << "\nPosition: (" << sumX << ", " << sumY << ")" << std::endl; 
 }
+
 bool Polygon::isConvex(){return 0;}
+
+Polygon::~Polygon(){
+    delete[] xCoords;
+    delete[] yCoords;
+    xCoords = NULL;
+    yCoords = NULL;
+}

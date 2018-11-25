@@ -1,9 +1,7 @@
 #include "Point.h"
 #include <iostream>
 
-Point::Point(){
-//def
-}
+Point::Point(){}
 
 Point::Point(float* coords, int coordCounter){
         this->xCoords = new float[coordCounter/2];
@@ -31,8 +29,15 @@ float Point::circumference(){
     return 0;
 }
 void Point::position(){
-    std::cout << "\nPosition: (" << xCoords[0] << ", " << yCoords[0] << ")";
+    std::cout << "\nPosition: (" << xCoords[0] << ", " << yCoords[0] << ")" << std::endl;
 }
 bool Point::isConvex(){
-    return 0;
+    return 1;
+}
+
+Point::~Point(){
+    delete[] xCoords;
+    delete[] yCoords;
+    xCoords = NULL;
+    yCoords = NULL;
 }
