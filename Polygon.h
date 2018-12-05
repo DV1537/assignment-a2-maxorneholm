@@ -10,6 +10,10 @@ private:
     int coordCounter;
     float* xCoords;
     float* yCoords;
+    float* kValue;
+    bool convexReturn = false;
+    float center;
+    float centerCoords[2];
 
 public:
     Polygon();
@@ -17,8 +21,11 @@ public:
     std::string getType();
     float getArea();
     float circumference();
-    void position();
+    float* position();
     bool isConvex();
-    ~Polygon();    
+    void operator=(const Polygon& a);
+    void operator=(const Shape& a);
+    void operator+(const Shape& a);
+    ~Polygon();
 };
 #endif

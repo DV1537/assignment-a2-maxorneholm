@@ -9,14 +9,19 @@ private:
     float circum;
     float* xCoords;
     float* yCoords;
+    int coordCounter;
+    float* coords;
+    float centerCoords[2];
 public:
     Point();
     Point(float*, int);
     std::string getType();
     float getArea();
     float circumference();
-    void position();
+    float* position();
     bool isConvex();
+    void operator=(const Point& a);
+    void operator=(const Shape& a);
     ~Point();
 };
 

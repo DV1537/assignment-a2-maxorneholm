@@ -23,7 +23,6 @@ std::string Polygon::getType(){
 }
 
 float Polygon::getArea(){
-    
     float current = 0;
     float last = 0;
     int lastCounter = 0;
@@ -64,21 +63,53 @@ float Polygon::circumference(){
     return total;
 }
 
-void Polygon::position(){
+float* Polygon::position(){
     float x = 0, y = 0;
-    float sumX = 0, sumY = 0;
     for(int i = 0; i < (coordCounter/2); i++){
 			x += xCoords[i];
 			y += yCoords[i];
 	}
 	x /= (coordCounter/2);
 	y /= (coordCounter/2);
-	sumX = x;
-    sumY = y;
-    std::cout << "\nPosition: (" << sumX << ", " << sumY << ")" << std::endl; 
+    centerCoords[0] = x;
+    centerCoords[1] = y;
+
+    return centerCoords;
 }
 
-bool Polygon::isConvex(){return 0;}
+bool Polygon::isConvex(){
+    bool isConvex = false;
+    int n = coordCounter/2;
+
+    for(int i = 0; i < n; i++){
+        double dx1 = xCoords[(i+2) % n] - xCoords[(i+1) % n];
+        double dy1 = yCoords[(i+2) % n] - yCoords[(i+1) % n];
+        double dx2 = xCoords[i] - xCoords[(i+1) % n];
+        double dy2 = yCoords[i] - yCoords[(i+1) % n];
+
+        double zcp = dx1 * dy2 - dy1 * dx2; //zcrossproduct
+
+        if(i == 0){
+            isConvex = zcp > 0;
+        }else if(isConvex != (zcp > 0)){
+            return false;
+        }
+    }
+    return true;
+}
+
+void Polygon::operator=(const Polygon& a){
+    this->xCoords = a.xCoords;
+    this->yCoords = a.yCoords;
+}
+
+void Polygon::operator=(const Shape& a){
+    std::cout << "\nNot possible with this shape.";
+}
+
+void Polygon::operator+(const Shape& a){
+
+}
 
 Polygon::~Polygon(){
     delete[] xCoords;

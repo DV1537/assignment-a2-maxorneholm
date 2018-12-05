@@ -11,6 +11,7 @@ private:
     float* yCoords;
     float distanceAtoB = 0, distanceAtoC = 0, distanceBtoC = 0;
     float hypo = 0, base = 0, height = 0, circumFormula = 0;
+    float centerCoords[2];
 
 public:
     Triangle();
@@ -18,8 +19,10 @@ public:
     std::string getType();
     float getArea();
     float circumference();
-    void position();
+    float* position();
     bool isConvex();
+    void operator=(const Triangle& a);
+    void operator=(const Shape& a);
     ~Triangle();
 };
 #endif

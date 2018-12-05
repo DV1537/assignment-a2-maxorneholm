@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <string>
 #include "Shape.cpp"
 #include "Point.cpp"
 #include "Line.cpp"
@@ -14,6 +15,8 @@ int main(){
     int xK = 0;
     int yK = 1;
     float x = 0;
+    std::string test;
+    std::string test2;
     int coordCounter = 0;
     bool isLine = false;
     bool isPolygon = false;
@@ -26,11 +29,23 @@ int main(){
     file.open("shape.txt");
 
     if(file.is_open()){
-        while(file >> x){
-            coordCounter += 1;
+        //while(std::getline(file, test)){
+            while(file >> x){
+                coordCounter++;
+          //  }
         }
     }else{
         std::cout << "No file could be found." << std::endl;
+    }
+
+    std::cout <<"cc:" << coordCounter << '\n';
+    std::cout <<"test:" << test << '\n';
+
+    //check if the file contains to few coords
+    if(coordCounter < 2 || coordCounter % 2 != 0){
+        std::cout << "Too few coords, edit the shape.txt file." << std::endl;
+        getchar();
+        exit(EXIT_FAILURE);
     }
 
     float *coords = new float[coordCounter];
@@ -88,45 +103,75 @@ int main(){
             }
         }
     }
-    std::cout << '\n';
-    //create new point object.
-    if(coordCounter/2 == 1){
+
+    //create all possible objects:
         Point point(coords, coordCounter); 
+        Line line(coords, coordCounter);
+        Triangle triangle(coords, coordCounter);
+        Polygon polygon(coords, coordCounter);
+    
+    //point
+    if(coordCounter/2 == 1){
         std::cout << "\nType: " << point.getType();
         std::cout << "\nArea: " << point.getArea();
         std::cout << "\nConvex: " << point.isConvex();
         point.position();
-        point.~Point();
+       // point.~Point();
     }
-
-    //create new line object.
+    
+    //line
     if(isLine == true){
-        Line line(coords, coordCounter);
         std::cout << "\nType: " << line.getType();
         std::cout << "\nArea: " << line.getArea();
         std::cout << "\nConvex: " << line.isConvex();
         line.position();
-        line.~Line();
+        //line.~Line();
     }
-    //create new triangle object.
+    //triangle.
     if(isPolygon == true && coordCounter/2 == 3 && isLine == false){
-        Triangle triangle(coords, coordCounter);
         std::cout << "\nType: " << triangle.getType();
         std::cout << "\nArea: " << triangle.getArea();
         std::cout << "\nCircumference: " << triangle.circumference();
         std::cout << "\nConvex: " << triangle.isConvex();
         triangle.position();
-        triangle.~Triangle();
+        //triangle.~Triangle();
     }
-    //create new polygon object.
+    //polygon.
     if(isPolygon == true && coordCounter/2 > 3 && isLine == false){
-        Polygon polygon(coords, coordCounter);
         std::cout << "\nType: " << polygon.getType();
         std::cout << "\nArea: " << polygon.getArea();
         std::cout << "\nCircumference: " << polygon.circumference();
-        polygon.position();
-        polygon.~Polygon();
+        std::cout << "\nPosition: " << polygon.position()[0] << ", " << polygon.position()[1];
+        std::cout << "\nConvex: " << polygon.isConvex();
+        //polygon.~Polygon();
     }
+
+   coords[0] = 8;
+   coords[1] = 3;
+   coords[2] = 5;
+   coords[3] = 7;
+   coords[4] = 10;
+   coords[5] = 9;
+   coords[4] = 14;
+   coords[5] = 2;
+
+    Polygon nyP(coords, coordCounter);
+
+    polygon.operator+(coords);
+   /*coords[0] = 8;
+   coords[1] = 3;
+   coords[2] = 5;
+   coords[3] = 7;
+   coords[4] = 10;
+   coords[5] = 9;
+   coords[6] = 12;
+   coords[7] = 6;
+
+    Point p2(coords, coordCounter);
+    std::cout << '\n';
+    std::cout << "p2 pos: " << p2.position()[0] << " " << p2.position()[1] << "\n";
+    std::cout << "\nDist between p1 and p2: " << polygon.distance(p2);
+    */
 
     delete[] coords;
     delete[] xCoords;

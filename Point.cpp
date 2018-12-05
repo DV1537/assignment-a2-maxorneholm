@@ -1,5 +1,6 @@
 #include "Point.h"
 #include <iostream>
+#include <cmath>
 
 Point::Point(){}
 
@@ -7,6 +8,8 @@ Point::Point(float* coords, int coordCounter){
         this->xCoords = new float[coordCounter/2];
         this->yCoords = new float[coordCounter/2];
 
+        this->coordCounter = coordCounter;
+        this->coords = coords;
         int yK = 1;
         int xK = 0;
 
@@ -28,11 +31,23 @@ float Point::getArea(){
 float Point::circumference(){
     return 0;
 }
-void Point::position(){
-    std::cout << "\nPosition: (" << xCoords[0] << ", " << yCoords[0] << ")" << std::endl;
+float* Point::position(){
+    centerCoords[0] = xCoords[0];
+    centerCoords[1] = yCoords[0];
+    return centerCoords;
+
 }
 bool Point::isConvex(){
     return 1;
+}
+
+void Point::operator=(const Point& a){
+    this->xCoords = a.xCoords;
+    this->yCoords = a.yCoords;
+}
+
+void Point::operator=(const Shape& a){
+    std::cout << "\nNot possible with this shape.";
 }
 
 Point::~Point(){

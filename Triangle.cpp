@@ -23,7 +23,6 @@ std::string Triangle::getType(){
 }
 
 float Triangle::getArea(){
-
     // Get the length A -> B
     float xAtoB = pow(xCoords[1]-xCoords[0],2);
     float yAtoB = pow(yCoords[1]-yCoords[0],2);
@@ -62,19 +61,28 @@ float Triangle::circumference(){
     circum = distanceAtoB + distanceAtoC + distanceBtoC;
     return circum;
 }
-void Triangle::position(){
-    float sumX = 0, sumY = 0;
+float* Triangle::position(){
+    float x = 0, y = 0;
     for(int i=0; i < 3; i++){
-        sumX += xCoords[i];
-        sumY += yCoords[i];
+        x += xCoords[i];
+        y += yCoords[i];
     }
-    sumX /= 3;
-    sumY /= 3;
-
-    std::cout << "\nPosition: " << "(" << sumX << ", " << sumY << ")" << std::endl;
+    x /= 3;
+    y /= 3;
+    centerCoords[0] = x;
+    centerCoords[1] = y;
+    return centerCoords;
 }
 bool Triangle::isConvex(){
     return true;
+}
+
+void Triangle::operator=(const Triangle& a){
+    this->xCoords = a.xCoords;
+    this->yCoords = a.yCoords;
+}
+void Triangle::operator=(const Shape& a){
+    std::cout << "\nNot possible with this shape.";
 }
 
 Triangle::~Triangle(){
