@@ -139,11 +139,7 @@ int main(){
         //polygon.~Polygon();
     }
 
-<<<<<<< HEAD
- /*	coords[0] = 8;
-	coords[1] = 3;
-=======
-
+ /*
    coords[0] = 8;
    coords[1] = 3;
    coords[2] = 5;
@@ -152,16 +148,11 @@ int main(){
    coords[5] = 9;
    coords[6] = 12;
    coords[7] = 6;
->>>>>>> bfb55f35a8b0ef946d8695f79b9dca8e3e4dce67
+   coordCounter = 8;
+   Polygon p2(coords, coordCounter);
 
-    Polygon p2(coords, coordCounter);
-
-    std::cout << "\nDist between p1 and p2: " << polygon.distance(p2);
-<<<<<<< HEAD
+   std::cout << "\nDist between p1 and p2: " << polygon.distance(p2);
  */
-=======
-    
->>>>>>> bfb55f35a8b0ef946d8695f79b9dca8e3e4dce67
 
     delete[] coords;
     delete[] xCoords;
