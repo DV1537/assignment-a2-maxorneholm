@@ -112,66 +112,48 @@ int main(){
     
     //point
     if(coordCounter/2 == 1){
-        std::cout << "\nType: " << point.getType();
+        //std::cout << "\nType: " << point.getType();
         std::cout << "\nArea: " << point.getArea();
-        std::cout << "\nConvex: " << point.isConvex();
-        point.position();
+        //std::cout << "\nConvex: " << point.isConvex();
+        //point.position();
        // point.~Point();
     }
     
     //line
     if(isLine == true){
-        std::cout << "\nType: " << line.getType();
+        //std::cout << "\nType: " << line.getType();
         std::cout << "\nArea: " << line.getArea();
-        std::cout << "\nConvex: " << line.isConvex();
-        line.position();
+        //std::cout << "\nConvex: " << line.isConvex();
+        //line.position();
         //line.~Line();
     }
     //triangle.
     if(isPolygon == true && coordCounter/2 == 3 && isLine == false){
-        std::cout << "\nType: " << triangle.getType();
+        //std::cout << "\nType: " << triangle.getType();
         std::cout << "\nArea: " << triangle.getArea();
-        std::cout << "\nCircumference: " << triangle.circumference();
-        std::cout << "\nConvex: " << triangle.isConvex();
-        triangle.position();
+        //std::cout << "\nCircumference: " << triangle.circumference();
+        //std::cout << "\nConvex: " << triangle.isConvex();
+        //triangle.position();
         //triangle.~Triangle();
     }
     //polygon.
     if(isPolygon == true && coordCounter/2 > 3 && isLine == false){
-        std::cout << "\nType: " << polygon.getType();
+        //std::cout << "\nType: " << polygon.getType();
         std::cout << "\nArea: " << polygon.getArea();
-        std::cout << "\nCircumference: " << polygon.circumference();
-        std::cout << "\nPosition: " << polygon.position()[0] << ", " << polygon.position()[1];
-        std::cout << "\nConvex: " << polygon.isConvex();
+        //std::cout << "\nCircumference: " << polygon.circumference();
+        //std::cout << "\nPosition: " << polygon.position()[0] << ", " << polygon.position()[1];
+        //std::cout << "\nConvex: " << polygon.isConvex();
         //polygon.~Polygon();
     }
 
-   coords[0] = 8;
-   coords[1] = 3;
-   coords[2] = 5;
-   coords[3] = 7;
-   coords[4] = 10;
-   coords[5] = 9;
-   coords[4] = 14;
-   coords[5] = 2;
-
-    Polygon nyP(coords, coordCounter);
-
-    polygon.operator+(coords);
-   /*coords[0] = 8;
-   coords[1] = 3;
-   coords[2] = 5;
-   coords[3] = 7;
-   coords[4] = 10;
-   coords[5] = 9;
-   coords[6] = 12;
-   coords[7] = 6;
+ /*	coords[0] = 8;
+	coords[1] = 3;
 
     Point p2(coords, coordCounter);
     std::cout << '\n';
     std::cout << "p2 pos: " << p2.position()[0] << " " << p2.position()[1] << "\n";
     std::cout << "\nDist between p1 and p2: " << polygon.distance(p2);
-    */
+ */
 
     delete[] coords;
     delete[] xCoords;
