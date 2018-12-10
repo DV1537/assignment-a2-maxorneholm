@@ -15,8 +15,6 @@ int main(){
     int xK = 0;
     int yK = 1;
     float x = 0;
-    std::string test;
-    std::string test2;
     int coordCounter = 0;
     bool isLine = false;
     bool isPolygon = false;
@@ -29,17 +27,12 @@ int main(){
     file.open("shape.txt");
 
     if(file.is_open()){
-        //while(std::getline(file, test)){
             while(file >> x){
                 coordCounter++;
-          //  }
         }
     }else{
         std::cout << "No file could be found." << std::endl;
     }
-
-    std::cout <<"cc:" << coordCounter << '\n';
-    std::cout <<"test:" << test << '\n';
 
     //check if the file contains to few coords
     if(coordCounter < 2 || coordCounter % 2 != 0){
@@ -146,14 +139,29 @@ int main(){
         //polygon.~Polygon();
     }
 
+<<<<<<< HEAD
  /*	coords[0] = 8;
 	coords[1] = 3;
+=======
 
-    Point p2(coords, coordCounter);
-    std::cout << '\n';
-    std::cout << "p2 pos: " << p2.position()[0] << " " << p2.position()[1] << "\n";
+   coords[0] = 8;
+   coords[1] = 3;
+   coords[2] = 5;
+   coords[3] = 7;
+   coords[4] = 10;
+   coords[5] = 9;
+   coords[6] = 12;
+   coords[7] = 6;
+>>>>>>> bfb55f35a8b0ef946d8695f79b9dca8e3e4dce67
+
+    Polygon p2(coords, coordCounter);
+
     std::cout << "\nDist between p1 and p2: " << polygon.distance(p2);
+<<<<<<< HEAD
  */
+=======
+    
+>>>>>>> bfb55f35a8b0ef946d8695f79b9dca8e3e4dce67
 
     delete[] coords;
     delete[] xCoords;
