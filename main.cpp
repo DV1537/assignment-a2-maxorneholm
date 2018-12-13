@@ -1,12 +1,11 @@
-#include "pch.h"
 #include <iostream>
 #include <fstream>
 #include <string>
-#include "Shape.h"
-#include "Point.h"
-#include "Line.h"
-#include "Triangle.h"
-#include "Polygon.h"
+#include "Shape.cpp"
+#include "Point.cpp"
+#include "Line.cpp"
+#include "Triangle.cpp"
+#include "Polygon.cpp"
 
 int main() {
 	float kV = 0;
@@ -101,10 +100,10 @@ int main() {
 	}
 
 	//create all possible objects:
-	Point point(coords, coordCounter);
 	Line line(coords, coordCounter);
 	Triangle triangle(coords, coordCounter);
 	Polygon polygon(coords, coordCounter);
+	Point point(coords, coordCounter);
 
 	//point
 	if (coordCounter / 2 == 1) {
@@ -167,7 +166,6 @@ int main() {
 	yCoords = NULL;
 	kValue = NULL;
 
-	  _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 	std::cout << '\n';
 	getchar();
 	return 0;

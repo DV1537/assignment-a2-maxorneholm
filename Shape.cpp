@@ -20,7 +20,6 @@ float Shape::distance(Shape& a){
     distance = sqrt(x+y);
 
     return distance;
-
 }
 
 void Shape::operator=(Shape& a){

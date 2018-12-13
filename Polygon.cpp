@@ -45,7 +45,7 @@ float Polygon::getArea(){
 float Polygon::circumference(){
     //Get the sides lengths.
     int lastCounter = 0;
-    int total = 0;
+    float total = 0;
     float x = 0, y = 0;
 
     for(int i = 0; i < (coordCounter/2)-1; i++){

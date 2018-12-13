@@ -13,7 +13,7 @@ private:
     float* kValue;
     bool convexReturn = false;
     float center;
-    float centerCoords[2];
+    float centerCoords[2] = {0};
 
 public:
     Polygon();
